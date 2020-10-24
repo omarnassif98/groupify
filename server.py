@@ -4,9 +4,14 @@ import random
 import string
 import os
 import json
+import SpotifyApiHelper
 rooms = {}
 app = Flask('Groupify')
 socketApp = SocketIO(app)
+
+SpotifyApiHelper.AuthenticateClientCredentials()
+
+
 
 @app.route('/')
 def LandingPage():
@@ -55,5 +60,11 @@ def test(msg):
 def DisplayRoom(id):
     return render_template('RoomView.html')
 
+@app.route('/guest_search')
+def GuestSearch():
+    phrase = request.args.get('phrase')
+    return SpotifyApiHelper.QuerySong(phrase)
+
 if __name__ == '__main__':
     socketApp.run(app,host='localhost', port=5000, debug=True)
+    

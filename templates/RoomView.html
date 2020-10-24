@@ -3,32 +3,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src={{url_for('static', filename='helper.js')}}></script>
-    <script src={{url_for('static', filename='room.js')}}></script>
+    
     <link rel="stylesheet" href={{url_for('static', filename='sitewide.css')}}>
     <title>Room</title>
 </head>
 <body>
     <h1>WELCOME TO THE ROOM</h1>
         <div class='searchDiv'>
-            <form action="javascript:", onsubmit="SongSearch()">
+            <form action="javascript:", onsubmit="HandleQuery()">
                 <input type="search" id="songSearch" name="songSearch">
                 <input type="submit">
             </form>
             <div id="resultsDropdown" class="searchResultBubble">
-                <div><p>content</p></div>
-                <div><p>content</p></div>
-                <div><p>content</p></div>
             </div>
         </div>
     <button onclick="Spam()">Send Message</button>
     <ul id="userList">
     </ul>
+
+    <ul id="roomQueue">
+    </ul>
+    <div id="currentlyPlaying" class=mediaDisplay>
+        <div id="currentSongName" class="currentSong">Load up a song DJ...</div>
+        <input type="range" class="mediaSeek" id="progressSlider" oninput="scrubMedia(this.value)" onchange="ReleaseScrub(this.value)" onclick="ScrubClick(this.value)">
+        <div id="progress"></div>
+        <div id="duration"></div>
+        <input type="button" onclick="TogglePlayback()">
+    </div>
     <div id="backdrop" onclick="DismissOverlay()">
-        <div id="overlay">
+        <div id="overlay" onclick="event.stopPropagation()">
             <h1>LETS GOOOOOO</h1>
         </div>
     </div>
+    <script src={{url_for('static', filename='room.js')}}></script>
 </body>
 </html>

@@ -28,6 +28,9 @@
 form{
     margin-bottom: 0%;
 }
+ul{
+    border: 1px;
+}
 .searchResultBubble{
     display: none;
     position: absolute;
@@ -36,9 +39,43 @@ form{
     background-color: #f1f1f1;
     overflow: hidden;
 }
-.searchResultBubble div{
-    padding: 12px, 5px;
+.dropdownPlaceholder{
+    height: 32px;
 }
-.searchResultBubble div:hover {
+
+.selectableResult{
+    height: auto;
+    display: flex;
+}
+.selectableResult:hover {
     background-color: burlywood;
+    cursor: default;
+}
+.labelContainer{
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+    padding: .2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.songLabel{
+    text-align: left;
+    font-size: 1.4em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.artistLabel{
+    text-align: left;
+    font-size: .8em;
+    color: gray;
+    margin-top: .6em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.coverArt{
+    padding: 5px;
 }

@@ -14,7 +14,7 @@ function Authorize(){
     const authURL = new URL('https://accounts.spotify.com/authorize')
     authURL.searchParams.append('client_id', sessionStorage.client_id);
     authURL.searchParams.append('response_type', 'code');
-    authURL.searchParams.append('scope', 'user-read-private user-read-email')
+    authURL.searchParams.append('scope', 'user-read-private user-read-email user-read-playback-state user-modify-playback-state user-read-currently-playing')
     authURL.searchParams.append('redirect_uri', 'http://localhost:5000/auth')
     authURL.searchParams.append('code_challenge_method', 'S256')
     authURL.searchParams.append('code_challenge', challenge)
