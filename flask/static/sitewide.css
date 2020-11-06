@@ -79,3 +79,9 @@ ul{
 .coverArt{
     padding: 5px;
 }
+
+.popupSubmenu{
+    display: none;
+    width: 100%;
+    height: 100%;
+}

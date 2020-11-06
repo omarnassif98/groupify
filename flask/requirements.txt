@@ -1,0 +1,6 @@
+Flask
+flask-socketio
+gunicorn
+gevent
+gevent-websocket
+requests

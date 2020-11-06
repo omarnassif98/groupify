@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src={{url_for('static', filename='helper.js')}}></script>
+    <script src={{url_for('static', filename='login.js')}}></script>
+    <title>Groupify</title>
+</head>
+<body>
+    <h1>Welcome to Groupify</h1>
+    <label for="RoomCodeEntry">Room Code:</label>
+    <input type="text" id="RoomCodeEntry">
+    <label for="UsernameEntry">Display Name:</label>
+    <input type="text" id="UsernameEntry">
+    <button onclick="Authorize()">Authorize Account</button>
+    <button onclick="HostRoom()">Host Room</button>
+    <button onclick="JoinRoom()">JoinRoom Room</button>
+    
+</body>
+</html>

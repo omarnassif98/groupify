@@ -19,6 +19,11 @@ def AuthenticateClientCredentials():
 def QuerySong(searchTerm):
     params = {'q': searchTerm, 'type': 'track'}
     headers = {'Authorization': 'Bearer ' + accessToken}
+    print('WTF Bro')
+    print(accessToken)
     req = httprequests.get('https://api.spotify.com/v1/search', params=params, headers=headers)
     if req.status_code == 200:
+        print('XOXOXOXOXOX')
         return req.content
+    else:
+        print(req.content)

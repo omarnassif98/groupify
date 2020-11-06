@@ -33,7 +33,17 @@
     </div>
     <div id="backdrop" onclick="DismissOverlay()">
         <div id="overlay" onclick="event.stopPropagation()">
-            <h1>LETS GOOOOOO</h1>
+            <div class='popupSubmenu'>
+                <h1>Unimplimented</h1>
+                <h2>Please start spotify and refresh</h2>
+            </div>
+            <div class="popupSubmenu">
+                <h1>Let's get you started...</h1>
+                <h2>All you need is a name</h2>
+                <label for="usernameEntry">Username:</label>
+                <input type="text" id="usernameEntry">
+                <button onclick="EstablishConnection()">Join Room</button>
+            </div>
         </div>
     </div>
     <script src={{url_for('static', filename='room.js')}}></script>
