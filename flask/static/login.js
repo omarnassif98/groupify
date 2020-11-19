@@ -23,6 +23,7 @@ async function Authorize(){
     let popup = window.open(authURL.href,'Login with spotify', 'width=800,height=600');
     window.callback = async (payload) => {
         console.log(payload);
+        popup.close();
         sessionStorage.authCallback = payload;
         payload = JSON.parse(payload);
         res = await HTTPRequest('https://api.spotify.com/v1/me', {'headers':[['Authorization', `Bearer ${payload.access_token}`]]});

@@ -37,8 +37,8 @@ function SendToSocketServer(HOOK, data){
 
 function InitializeConnection(){
     var startTime;
-    console.log(location.origin);
-    socket = io.connect(location.origin, {transports: ['websocket']});
+    console.log('http://' + location.hostname);
+    socket = io.connect('http://' + location.hostname, {transports: ['websocket']});
     //library defined Socket-io hook
     //fires upon connection to server
     socket.on('connect', function(){

@@ -5,6 +5,6 @@ import string
 rooms = {}
 app = Flask(__name__)
 socketApp = SocketIO(app)
-print('WEBAPP UP', flush=True)
+print('WEBAPP UP v 0.4c', flush=True)
 import HttpServer
 import SocketServer
