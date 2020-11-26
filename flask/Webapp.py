@@ -1,10 +1,11 @@
 import logging
 from flask import Flask
 from flask_socketio import SocketIO
-import string
+from werkzeug.middleware.proxy_fix import ProxyFix
 rooms = {}
 app = Flask(__name__)
 socketApp = SocketIO(app)
-print('WEBAPP UP v 0.4c', flush=True)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
+print('WEBAPP UP v 0.4e', flush=True)
 import HttpServer
 import SocketServer

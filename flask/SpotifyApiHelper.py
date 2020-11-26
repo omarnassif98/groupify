@@ -14,7 +14,7 @@ def AuthenticateClientCredentials():
         response = json.loads(req.content)
         global accessToken 
         accessToken = response['access_token']
-        print('Refreshed access token')
+        print('Refreshed access token',flush=True)
 
 def QuerySong(searchTerm):
     params = {'q': searchTerm, 'type': 'track'}
@@ -27,3 +27,4 @@ def QuerySong(searchTerm):
         return req.content
     else:
         print(req.content)
+AuthenticateClientCredentials()

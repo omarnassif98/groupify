@@ -9,7 +9,9 @@ var activeSubmenu = 0;
 if (sessionStorage.userProf){
     localUserInfo = JSON.parse(sessionStorage.userProf);
     InitializeConnection();
-    ChooseDevice();
+    if(localUserInfo.authorized){
+       ChooseDevice();
+    }
 }else{
     popupFocus = true;
     CallOverlay(1);
@@ -37,8 +39,8 @@ function SendToSocketServer(HOOK, data){
 
 function InitializeConnection(){
     var startTime;
-    console.log('http://' + location.hostname);
-    socket = io.connect('http://' + location.hostname, {transports: ['websocket']});
+    console.log(location.origin);
+    socket = io.connect(location.origin, {transports: ['websocket']});
     //library defined Socket-io hook
     //fires upon connection to server
     socket.on('connect', function(){
@@ -110,12 +112,15 @@ function HandleQuery(){
     resultsDropdown.appendChild(loadingPlaceholder);
     resultsDropdown.style.display = 'block';
     const searchTerm =document.getElementById("songSearch").value;
-    AuthorizedSongSearch(searchTerm);
-
+    if(localUserInfo.authorized){
+	AuthorizedSongSearch(searchTerm);
+    }else{
+	GuestQuery(searchTerm);
+    }
 }
 
 async function GuestQuery(term){
-    let res = await AuthHTTPRequest('http://localhost:5000/guest_search', {'params':[['phrase', term]]},'GET');
+    let res = await HTTPRequest(location.origin + '/guest_search', {'params':[['phrase', term]]},'GET');
     if(res.code == 200){
         res = JSON.parse(res.response);
         DisplaySearchResults(res);
@@ -138,7 +143,7 @@ async function AuthorizedSongSearch(term){
 function EstablishConnection(){
     const username = document.getElementById('usernameEntry').value;
     if(username != ''){
-        localUserInfo = {'name':username}
+        localUserInfo = {'name':username, 'authorized':false}
         InitializeConnection();
     }
 }

@@ -60,7 +60,7 @@ function JoinRoom(){
         const roomCode = document.getElementById('RoomCodeEntry').value;
         userProf.name = document.getElementById('UsernameEntry').value;
         sessionStorage.userProf = JSON.stringify(userProf);
-        res = await HTTPRequest('http://localhost:5000/attempt_room', {'params':[['code', roomCode]]});
+        res = await HTTPRequest(location.origin + '/attempt_room', {'params':[['code', roomCode]]});
         if(res.code==200){
             window.location.replace(baseUrl + '/room/' + roomCode);
         }else{
