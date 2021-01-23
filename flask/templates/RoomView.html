@@ -22,14 +22,28 @@
     <ul id="userList">
     </ul>
 
-    <ul id="roomQueue">
-    </ul>
+    <div class="votingBar" id="nextSongs">
+        <div class="trackContainer">
+            <img class="trackArt"></img>
+            <div class="trackName">TRACKNAME</div>
+            <div class="trackArtists">TRACKARTISTS</div>
+        </div>
+    </div>
     <div id="currentlyPlaying" class=mediaDisplay>
+        <div class="mediaControls">
+            <div style="display: block;">
+                <h2 style="display: inline;">This is where the media controls go</h2>>
+                <input type="button" onclick="TogglePlayback()">
+            </div>
+            <div>
+                <h2 style="display: inline;">Slider</h2>
+                <input type="range" class="mediaSeek" id="progressSlider" oninput="scrubMedia(this.value)" onchange="ReleaseScrub(this.value)" onclick="ScrubClick(this.value)">
+            </div>
+        </div>
         <div id="currentSongName" class="currentSong">Load up a song DJ...</div>
-        <input type="range" class="mediaSeek" id="progressSlider" oninput="scrubMedia(this.value)" onchange="ReleaseScrub(this.value)" onclick="ScrubClick(this.value)">
         <div id="progress"></div>
         <div id="duration"></div>
-        <input type="button" onclick="TogglePlayback()">
+        
     </div>
     <div id="backdrop" onclick="DismissOverlay()">
         <div id="overlay" onclick="event.stopPropagation()">
@@ -44,8 +58,16 @@
                 <input type="text" id="usernameEntry">
                 <button onclick="EstablishConnection()">Join Room</button>
             </div>
+            <div class="popupSubmenu">
+                <h1>Results for [text]</h1>
+                <div class="extendedResultsContainer" id="extendedResultsView">
+                  
+                </div>
+            </div>
         </div>
     </div>
-    <script src={{url_for('static', filename='room.js')}}></script>
+    <script src={{url_for('static', filename='MusicManager.js')}}></script>
+    <script src={{url_for('static', filename='RoomManager.js')}}></script>
+    <script src={{url_for('static', filename='ConnectionManager.js')}}></script>
 </body>
 </html>

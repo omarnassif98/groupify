@@ -8,7 +8,7 @@ const protoChallenge = GenerateChallenge(window.verifier);
 
 protoChallenge.then(function(val){challenge = val;});
 sessionStorage.verifier = window.verifier;
-console.log('challenge and verifier generated')
+
 //Authorizes user's spotify account, this is needed to host and also play music
 //Authorization uses PKCE method
 async function Authorize(){
@@ -55,16 +55,19 @@ function HostRoom(){
     }
 }
 
+//Joins room as guest given valid room code
 function JoinRoom(){
     req = async () =>{
         const roomCode = document.getElementById('RoomCodeEntry').value;
         userProf.name = document.getElementById('UsernameEntry').value;
-        sessionStorage.userProf = JSON.stringify(userProf);
-        res = await HTTPRequest(location.origin + '/attempt_room', {'params':[['code', roomCode]]});
-        if(res.code==200){
-            window.location.replace(baseUrl + '/room/' + roomCode);
-        }else{
-            //DISPLAY ERROR, NO SUCH ROOM
+        if (userProf.name != ''){
+            sessionStorage.userProf = JSON.stringify(userProf);
+            res = await HTTPRequest(location.origin + '/attempt_room', {'params':[['code', roomCode]]});
+            if(res.code==200){
+                window.location.replace(baseUrl + '/room/' + roomCode);
+            }else{
+                //DISPLAY ERROR, NO SUCH ROOM
+            }
         }
     }
     req();

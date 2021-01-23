@@ -53,3 +53,18 @@ function RefreshAccess(){
         }
     }
 }
+
+function ParseResults(results){
+    let trackList = [];
+    results.tracks.items.forEach(item => {
+        let songObj = {
+            'name': item.name,
+            'artist': item.artists.map(artist => artist.name).join(', '),
+            'artworkURL' : item.album.images[2].url,
+            'trackURI' : item.uri,
+            'duration' : item.duration_ms
+        };
+        trackList.push(songObj);
+    });
+    return trackList;
+}
